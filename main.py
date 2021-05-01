@@ -74,7 +74,7 @@ def main():
   # iterate all banks and years
   for bank in banks:
     for year in years:
-      line = [bank, year, bank_regs[bank]]
+      line = [bank_regs[bank], bank, year]
       lines.append(line)
 
   # add data
