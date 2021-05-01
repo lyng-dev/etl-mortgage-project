@@ -17,6 +17,15 @@ def retrieve_banks(filename):
 
     return banks
 
+def retrieve_bank_regs(filename):
+  with open(filename, newline='') as csvfile:
+    table = csv.reader(csvfile, delimiter = ',', quotechar='"')
+    bank_regs = {}
+    for row in table:
+      bank_regs[row[1]] = row[0]
+
+    return bank_regs
+
 # add date to lines
 def append_file(lines, filename):
   with open(filename, newline='') as csvfile:
@@ -57,13 +66,15 @@ def main():
 
   # prepare program
   lines = []
+  bank_regs = retrieve_bank_regs('bank-reg-nr.csv')
   banks = retrieve_banks(src)
+  print(*banks, sep='\n')
   years = range(2000, 2020)
 
   # iterate all banks and years
   for bank in banks:
     for year in years:
-      line = [bank, year]
+      line = [bank, year, bank_regs[bank]]
       lines.append(line)
 
   # add data
