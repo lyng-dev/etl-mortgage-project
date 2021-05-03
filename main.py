@@ -68,7 +68,6 @@ def main():
   lines = []
   bank_regs = retrieve_bank_regs('bank-reg-nr.csv')
   banks = retrieve_banks(src)
-  print(*banks, sep='\n')
   years = range(2000, 2020)
 
   # iterate all banks and years
